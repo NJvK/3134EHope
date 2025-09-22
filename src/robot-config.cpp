@@ -12,7 +12,23 @@ brain  Brain;
 
 //Add your devices below, and don't forget to do the same in robot-config.h:
 
+motor LeftFront = motor(PORT1, ratio6_1, false); 
+motor LeftMiddle = motor (PORT2, ratio6_1, false); 
+motor LeftBack = motor (PORT3, ratio6_1, false); 
+motor RightFront = motor(PORT4, ratio6_1, false); 
+motor RightMiddle = motor (PORT9, ratio6_1, false);
+motor RightBack = motor (PORT6, ratio6_1, false);
+motor LowwerRoller = motor (PORT7, ratio6_1, true);
+motor UpperRoller = motor (PORT10, ratio6_1, false);
+motor MiddleRoller = motor (PORT5, ratio6_1, false);
+drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, 319.19, 320, 40, mm, 1);
+controller Controller1 = controller(primary);
+inertial Inertial = inertial(PORT21);
 
 void vexcodeInit( void ) {
   // nothing to initialize
+  Inertial.calibrate();
+  while (Inertial.isCalibrating()) {
+    wait(25, msec);
+  }
 }
